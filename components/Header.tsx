@@ -6,12 +6,20 @@ const linkStyle = {
 
 export default function Header() {
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        marginBottom: 20,
+      }}
+    >
+      <span
+        style={{ display: "inline-block", marginRight: 10, fontWeight: "bold" }}
+      >
+        Office Chairs.app
+      </span>
+      <span style={{ flex: 1 }}></span>
       <Link href="/">
         <a style={linkStyle}>Home</a>
-      </Link>
-      <Link href="/about">
-        <a style={linkStyle}>About Page</a>
       </Link>
     </div>
   );

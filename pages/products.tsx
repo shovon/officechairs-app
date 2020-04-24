@@ -1,24 +1,54 @@
 import fetch from "isomorphic-unfetch";
 import parser from "fast-xml-parser";
+import Header from "../components/Header";
+import Master from "../components/Master";
+
+type Product = {
+  name: string;
+  price: string;
+  "image-url": string;
+};
+
+type ProductProps = {
+  product: Product;
+};
+
+function ProductThumbnail({
+  product: { name, price, ...product },
+}: ProductProps) {
+  return (
+    <div>
+      <img
+        style={{
+          width: "100%",
+        }}
+        src={product["image-url"]}
+        alt={name}
+      />
+      <div
+        style={{
+          marginBottom: 200,
+        }}
+      >
+        {name}
+      </div>
+      <div>${price}</div>
+    </div>
+  );
+}
 
 export default function Products({ products }) {
   return (
-    <div>
-      {products.map(({ name, price, ...remainder }) => {
-        return (
-          <div>
-            <img
-              style={{
-                maxWidth: 200,
-              }}
-              src={remainder["image-url"]}
-              alt={name}
-            />
-            {name} {price}
-          </div>
-        );
-      })}
-    </div>
+    <Master>
+      <Header />
+      <div
+        style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr" }}
+      >
+        {products.map((product) => {
+          return <ProductThumbnail product={product} />;
+        })}
+      </div>
+    </Master>
   );
 }
 

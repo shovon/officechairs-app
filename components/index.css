@@ -1,0 +1,9 @@
+html,
+body {
+  font-family: "Helvetica neue", Helvetica, Arial, sans-serif, sans;
+}
+
+sup {
+  display: inline-block;
+  transform: translateY(5px);
+}
