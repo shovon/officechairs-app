@@ -61,7 +61,7 @@ Object.assign(Index, {
     const pid = "9280107";
     const accessToken = "4capdb8pnjjywcwm3e90eb63fv";
     const res = await fetch(
-      `https://product-search.api.cj.com/v2/product-search?website-id=${pid}&advertiser-ids=2746196&keywords="Office Chair"`,
+      `https://product-search.api.cj.com/v2/product-search?website-id=${pid}&advertiser-ids=4044331&keywords="Office Chair"`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
