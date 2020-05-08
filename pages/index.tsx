@@ -1,57 +1,30 @@
 import fetch from "isomorphic-unfetch";
 import parser from "fast-xml-parser";
 import Header from "../components/Header";
+import Head from "next/head";
 import Master from "../components/Master";
-import Link from "next/link";
+import Product from "../components/Product";
+import styled from "styled-components";
 
-type Product = {
-  name: string;
-  price: string;
-  "image-url": string;
-};
-
-type ProductProps = {
-  product: Product;
-};
-
-function ProductThumbnail({
-  product: { name, price, ...product },
-}: ProductProps) {
-  return (
-    <Link href={`/product/${"something"}`}>
-      <div>
-        <img
-          style={{
-            width: "100%",
-          }}
-          src={product["image-url"]}
-          alt={name}
-        />
-        <div style={{ marginBottom: 5 }}>{name}</div>
-        <div style={{ fontWeight: "bold", fontSize: "1.1em" }}>
-          <sup>$</sup>
-          {price}
-        </div>
-      </div>
-    </Link>
-  );
-}
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+`;
 
 export default function Index({ products }) {
   return (
     <Master>
+      <Head>
+        <title>Office Chairs.app</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <Header />
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
-          gridGap: 20,
-        }}
-      >
+      <Grid>
         {products.map((product) => {
-          return <ProductThumbnail product={product} />;
+          return <Product product={product} />;
         })}
-      </div>
+      </Grid>
     </Master>
   );
 }
